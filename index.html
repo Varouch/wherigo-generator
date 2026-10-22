@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="WherigoGenerator: ze scénáře vyrobí Wherigo cartridge pro Urwigo a novou verzi nahraje na wherigo.com.">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0}
+img{max-width:100%}
+</style>
+<title>WherigoGenerator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Literata:opsz,wght@7..72,400;7..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column; the pipeline runs as a waypoint trail, types as a 2x2 field map */
+:root {
+  --bg: #f3f5f2;
+  --surface: #e6ebe5;
+  --ink: #17231f;
+  --muted: #55645e;
+  --line: #c9d2cb;
+  --accent: #b0411f;      /* trail marker */
+  --accent-soft: #f1dcd2;
+  --pine: #245a4a;
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "Literata", Georgia, "Times New Roman", serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111a17; --surface: #19251f; --ink: #e5ece7; --muted: #9aaba3; --line: #2c3a34;
+    --accent: #e9774f; --accent-soft: #3a231a; --pine: #7cc3a8; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111a17; --surface: #19251f; --ink: #e5ece7; --muted: #9aaba3; --line: #2c3a34;
+  --accent: #e9774f; --accent-soft: #3a231a; --pine: #7cc3a8; color-scheme: dark;
+}
+
+body {
+  background: var(--bg); color: var(--ink);
+  font: 400 1.05rem/1.65 var(--body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 46rem; margin: 0 auto; padding-block: 3.5rem 4rem; display: grid; gap: 3.5rem; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.4rem, 7vw, 3.6rem); font-weight: 700; letter-spacing: -0.02em; }
+h2 { font-size: 1.6rem; font-weight: 700; }
+h3 { font-size: 1.1rem; font-weight: 700; }
+p { margin: 0; max-width: 65ch; }
+code, .mono { font-family: var(--mono); font-size: 0.88em; }
+code { background: var(--surface); padding: 0.08em 0.35em; border-radius: 3px; }
+section { display: grid; gap: 1.1rem; }
+.label {
+  font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent); font-weight: 500;
+}
+
+/* hero */
+header { display: grid; gap: 1.1rem; }
+.lede { font-size: 1.2rem; color: var(--ink); }
+.lede-sub { color: var(--muted); }
+
+/* pipeline as a trail of waypoints */
+.trail { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; counter-reset: wp; }
+.trail li {
+  counter-increment: wp; position: relative; display: grid; grid-template-columns: 2.4rem minmax(0, 1fr);
+  gap: 0.9rem; padding-bottom: 1.3rem;
+}
+.trail li::before {
+  content: counter(wp); display: grid; place-items: center; width: 2.4rem; height: 2.4rem;
+  border-radius: 50%; border: 2px solid var(--accent); color: var(--accent); background: var(--bg);
+  font: 500 0.95rem var(--mono); position: relative; z-index: 1;
+}
+.trail li:not(:last-child)::after {
+  content: ""; position: absolute; left: calc(1.2rem - 1px); top: 2.4rem; bottom: 0;
+  border-left: 2px dashed var(--line);
+}
+.trail .step { display: grid; gap: 0.2rem; padding-top: 0.35rem; min-width: 0; }
+.trail .file { font-family: var(--mono); font-size: 0.82rem; color: var(--pine); }
+
+/* cartridge types */
+.types { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.type { background: var(--bg); padding: 1.2rem; display: grid; gap: 0.5rem; align-content: start; min-width: 0; }
+.type .cmd { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }
+.tag {
+  justify-self: start; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em;
+  padding: 0.1rem 0.5rem; border-radius: 99px; background: var(--accent-soft); color: var(--accent);
+}
+.tag.field { background: var(--surface); color: var(--pine); }
+@media (max-width: 560px) { .types { grid-template-columns: minmax(0, 1fr); } }
+
+/* checks */
+.checks { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.9rem; }
+.checks li { display: grid; grid-template-columns: 1.4rem minmax(0, 1fr); gap: 0.6rem; }
+.checks li::before { content: "✓"; color: var(--pine); font-family: var(--mono); font-weight: 500; }
+
+/* cli */
+.cli { background: var(--surface); border-radius: 6px; padding: 1rem 1.1rem; overflow-x: auto; }
+.cli pre { margin: 0; font: 400 0.85rem/1.7 var(--mono); }
+.cli .c { color: var(--muted); }
+
+/* timeline */
+.log { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 0.55rem 1.2rem; }
+.log dt { font-family: var(--mono); font-size: 0.82rem; color: var(--muted); padding-top: 0.2rem; font-variant-numeric: tabular-nums; }
+.log dd { margin: 0; }
+
+/* published cartridges */
+.carts { list-style: none; margin: 0; padding: 0; display: grid; border-top: 1px solid var(--line); }
+.cart {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.4rem 1.2rem; align-items: center;
+  padding-block: 1rem; border-bottom: 1px solid var(--line);
+}
+.cart .meta { display: grid; gap: 0.35rem; min-width: 0; }
+.cart .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.cart p { color: var(--muted); font-size: 0.97rem; }
+.dl {
+  font-family: var(--display); font-weight: 500; font-size: 0.95rem; color: var(--accent);
+  text-decoration: none; border: 1.5px solid var(--accent); border-radius: 99px; padding: 0.35rem 0.9rem;
+  white-space: nowrap;
+}
+.dl:hover { background: var(--accent-soft); }
+.dl:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 560px) { .cart { grid-template-columns: minmax(0, 1fr); } .dl { justify-self: start; } }
+.note { color: var(--muted); font-size: 0.92rem; }
+
+footer { border-top: 1px solid var(--line); padding-top: 1.2rem; color: var(--muted); font-size: 0.9rem; display: flex; flex-wrap: wrap; gap: 0.4rem 1.5rem; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header>
+  <span class="label">Nástroj pro autory Wherigo</span>
+  <h1>WherigoGenerator</h1>
+  <p class="lede">Ze scénáře napsaného jako text vyrobí hotovou Wherigo cartridge pro Urwigo, i s obrázky a zvuky. A novou verzi umí rovnou nahrát na wherigo.com.</p>
+  <p class="lede-sub">Autor píše příběh, hádanky a pravidla. Zóny, předměty, postavy, úkoly a Lua kód kolem nich za něj poskládá generátor. Než cokoli vytvoří, hru si sám zahraje a ověří, že jde dohrát.</p>
+</header>
+
+<section>
+  <span class="label">Jak to funguje</span>
+  <h2>Od scénáře po wherigo.com</h2>
+  <ol class="trail">
+    <li><div class="step"><h3>Scénář</h3><p>Celá hra je v jednom textovém souboru: lokace nebo zóny, předměty, postavy, otázky, texty a obrázky.</p><span class="file">scénář.yaml</span></div></li>
+    <li><div class="step"><h3>Kontrola a simulace</h3><p>Generátor scénář zkontroluje a projde řešení krok po kroku. Hra, která nejde dohrát, se do Urwiga vůbec nedostane.</p></div></li>
+    <li><div class="step"><h3>Projekt pro Urwigo</h3><p>Vznikne projekt i s médii, který jde dál otevřít a upravovat v Urwigu. Každé vygenerování zvýší verzi o 0.1.</p><span class="file">projekt.urwigo</span></div></li>
+    <li><div class="step"><h3>Balíček GWZ</h3><p>Balíček sestaví nainstalované Urwigo, jen bez otevření okna. Výsledek je stejný jako z menu Sestavit, včetně ochrany cartridge.</p><span class="file">cartridge.gwz</span></div></li>
+    <li><div class="step"><h3>Nahrání na wherigo.com</h3><p>Nová verze se nahraje přes prohlížeč s uloženým přihlášením. Do poznámky k verzi se doplní datum, čas a podpis WherigoGeneratoru.</p></div></li>
+  </ol>
+</section>
+
+<section>
+  <span class="label">Typy cartridge</span>
+  <h2>Čtyři druhy her, jedno jádro</h2>
+  <p>Každý typ má vlastní engine v Lua a vlastní formát scénáře. Zápis projektu pro Urwigo, verze, obrázky a nahrávání sdílejí všechny typy.</p>
+  <div class="types">
+    <div class="type"><span class="tag">hraje se kdekoli</span><h3>UNLOCK</h3><p>Úniková hra s kartami podle deskovky UNLOCK!. Kombinace karet, kódy a stroje. Prompty pro ilustrace karet se vytvoří samy.</p><span class="cmd">wherigo-gen unlock</span></div>
+    <div class="type"><span class="tag">hraje se kdekoli</span><h3>Textovka</h3><p>Textová adventura s příkazy VEZMI, POUŽIJ a PROZKOUMEJ. Lokace, inventář a předměty jako ve starých českých textovkách.</p><span class="cmd">wherigo-gen textovka</span></div>
+    <div class="type"><span class="tag">hraje se kdekoli</span><h3>Puzzle</h3><p>Logické hlavolamy na displeji telefonu. Každý hlavolam je samostatný modul, takže další se dají snadno přidat.</p><span class="cmd">wherigo-gen puzzle</span></div>
+    <div class="type"><span class="tag field">v terénu</span><h3>Adventura</h3><p>Hra po trase se zónami, které se otevírají podle pravidel, s postavami, předměty a otázkami na odpovědi z terénu.</p><span class="cmd">wherigo-gen adventura</span></div>
+  </div>
+</section>
+
+<section>
+  <span class="label">Cartridge</span>
+  <h2>Hry z generátoru na wherigo.com</h2>
+  <ul class="carts">
+    <li class="cart"><div class="meta"><div class="tags"><span class="tag">puzzle</span><span class="tag">hraje se kdekoli</span></div><h3>Patnáctka</h3><p>Loydova patnáctka. Seřaď kameny od 1 do 15 posouváním na prázdné místo.</p></div><a class="dl" href="https://www.wherigo.com/cartridge/details.aspx?CGUID=37d65d8a-5098-41e1-aa48-2de4afd83db7" target="_blank" rel="noopener">Stáhnout na wherigo.com</a></li>
+    <li class="cart"><div class="meta"><div class="tags"><span class="tag">puzzle</span><span class="tag">hraje se kdekoli</span></div><h3>Hanojské věže</h3><p>Přesuň všechny disky z věže A na věž C, vždy jen jeden disk a nikdy větší na menší.</p></div><a class="dl" href="https://www.wherigo.com/cartridge/details.aspx?CGUID=31db3ef7-0637-40b6-b45b-8067a69782cb" target="_blank" rel="noopener">Stáhnout na wherigo.com</a></li>
+    <li class="cart"><div class="meta"><div class="tags"><span class="tag">puzzle</span><span class="tag">hraje se kdekoli</span></div><h3>Sokoban</h3><p>Dotlač všechny bedýnky na určená políčka. Tlačit jde jen dopředu a vždy jen jednu bedýnku.</p></div><a class="dl" href="https://www.wherigo.com/cartridge/details.aspx?CGUID=ea96581e-4869-40aa-a3ad-b8af86ca86ca" target="_blank" rel="noopener">Stáhnout na wherigo.com</a></li>
+    <li class="cart"><div class="meta"><div class="tags"><span class="tag">textovka</span><span class="tag">hraje se kdekoli</span></div><h3>Stíny noci</h3><p>Wherigo verze staré české textovky Stíny noci (© 1993, 1994 Vladimír Peníška, Computer Experts).</p></div><a class="dl" href="https://www.wherigo.com/cartridge/details.aspx?CGUID=ce758da0-6fb2-4ca1-b825-f692f1cdc7fd" target="_blank" rel="noopener">Stáhnout na wherigo.com</a></li>
+  </ul>
+  <p class="note">Ke stažení z wherigo.com je potřeba přihlášení účtem Geocaching. Cartridge se hraje v c:geo nebo v jiném přehrávači Wherigo.</p>
+</section>
+
+<section>
+  <span class="label">Co hlídá</span>
+  <h2>Chyby, které se v Urwigu hledají těžko</h2>
+  <ul class="checks">
+    <li><p><strong>Hra jde dohrát.</strong> Řešení ze scénáře se přehraje do konce dřív, než vznikne projekt.</p></li>
+    <li><p><strong>Verze sedí.</strong> Před nahráním musí mít scénář, projekt i balíček přesně tu verzi, kterou wherigo.com přidělí.</p></li>
+    <li><p><strong>Pořadí příkazů v c:geo.</strong> Přehrávače OpenWIG řadí příkazy podle hashovací tabulky Lua. Generátor volí identifikátory tak, aby se příkazy ukázaly v zamýšleném pořadí.</p></li>
+    <li><p><strong>Ochrana cartridge.</strong> Zakódované texty, hashované odpovědi a zamaskované identifikátory jsou zapnuté vždy.</p></li>
+    <li><p><strong>Texty bez překvapení.</strong> Diakritika, zalamování řádků a znaky se upraví tak, aby vypadaly stejně v c:geo i v emulátoru.</p></li>
+  </ul>
+</section>
+
+<section>
+  <span class="label">Příkazy</span>
+  <h2>Z příkazové řádky</h2>
+  <div class="cli"><pre><span class="c"># zkontrolovat a vygenerovat projekt</span>
+wherigo-gen &lt;typ&gt; scénář.yaml
+<span class="c"># jen kontrola a přehrání řešení</span>
+wherigo-gen &lt;typ&gt; scénář.yaml --check
+<span class="c"># balíček .gwz bez otevření Urwiga</span>
+wherigo-gen gwz scénář.yaml
+<span class="c"># jednou: přihlášení na wherigo.com</span>
+wherigo-gen wherigo-login
+<span class="c"># nahrát novou verzi (nebo --nahrat při generování)</span>
+wherigo-gen nahrat scénář.yaml --poznamka "Co je nového"</pre></div>
+  <p>Běží v Pythonu na Windows s nainstalovaným Urwigem. Hry se testují v c:geo a v emulátoru Urwiga.</p>
+</section>
+
+<section>
+  <span class="label">Vývoj</span>
+  <h2>Co přibylo</h2>
+  <dl class="log">
+    <dt>22. 10. 2026</dt><dd>Sestavení balíčku GWZ bez okna Urwiga a nahrání nové verze na wherigo.com s kontrolou verzí.</dd>
+    <dt>22. 10. 2026</dt><dd>Nový typ adventura pro hry v terénu a další hlavolam pro typ puzzle.</dd>
+    <dt>21. 10. 2026</dt><dd>Každá cartridge má vlastní složku: scénář, obrázky, listing a vygenerovaný projekt pohromadě. Popis formátu scénáře pro každý typ.</dd>
+    <dt>20. 10. 2026</dt><dd>Typ puzzle s vyměnitelnými hlavolamy.</dd>
+    <dt>20. 10. 2026</dt><dd>Typ textovka: textová adventura hratelná kdekoli, bez zóny.</dd>
+    <dt>20. 10. 2026</dt><dd>Přestavba z generátoru jedné hry na WherigoGenerator se společným jádrem a typy cartridge.</dd>
+    <dt>20. 10. 2026</dt><dd>První verze: generátor únikové hry UNLOCK.</dd>
+  </dl>
+</section>
+
+<footer>
+  <span>WherigoGenerator · Varouch</span>
+  <span class="mono">Aktualizováno 22. 10. 2026</span>
+</footer>
+
+</div>
+</body>
+</html>
