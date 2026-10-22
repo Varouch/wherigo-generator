@@ -149,6 +149,27 @@ section { display: grid; gap: 1.1rem; }
   .dl { grid-column: 2; justify-self: start; }
 }
 .note { color: var(--muted); font-size: 0.92rem; }
+/* all the author's public cartridges */
+.sort { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.sort button {
+  font: 500 0.9rem var(--display); color: var(--accent); background: transparent; cursor: pointer;
+  border: 1.5px solid var(--accent); border-radius: 99px; padding: 0.3rem 0.9rem;
+}
+.sort button[aria-pressed="true"] { background: var(--accent); color: var(--bg); }
+.sort button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.wall { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.wc { background: var(--bg); padding: 1rem; display: grid; grid-template-columns: 4.5rem minmax(0, 1fr); gap: 0.9rem; align-items: start; }
+.wc .poster { width: 4.5rem; }
+.wc .meta { display: grid; gap: 0.35rem; min-width: 0; }
+.wc h3 a { color: var(--ink); text-decoration: none; overflow-wrap: anywhere; }
+.wc h3 a:hover { color: var(--accent); text-decoration: underline; }
+.facts { display: flex; flex-wrap: wrap; align-items: center; gap: 0.2rem 0.7rem; color: var(--muted); font-size: 0.88rem; font-variant-numeric: tabular-nums; }
+.about {
+  color: var(--muted); font-size: 0.93rem; line-height: 1.5; white-space: pre-line; overflow-wrap: anywhere;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; line-clamp: 4; overflow: hidden; cursor: pointer;
+}
+.about.open { display: block; -webkit-line-clamp: none; line-clamp: none; }
+@media (max-width: 640px) { .wall { grid-template-columns: minmax(0, 1fr); } }
 
 footer { border-top: 1px solid var(--line); padding-top: 1.2rem; color: var(--muted); font-size: 0.9rem; display: flex; flex-wrap: wrap; gap: 0.4rem 1.5rem; }
 </style>
@@ -237,6 +258,7 @@ wherigo-gen obrazek scénář.yaml</pre></div>
   <span class="label">Vývoj</span>
   <h2>Co přibylo</h2>
   <dl class="log">
+    <dt>22. 10. 2026</dt><dd>Seznam všech veřejných cartridge autora z wherigo.com s počtem stažení.</dd>
     <dt>22. 10. 2026</dt><dd>Nahrání obrázku cartridge (120 × 150 px) na wherigo.com.</dd>
     <dt>22. 10. 2026</dt><dd>Sestavení balíčku GWZ bez okna Urwiga a nahrání nové verze na wherigo.com s kontrolou verzí.</dd>
     <dt>22. 10. 2026</dt><dd>Nový typ adventura pro hry v terénu a další hlavolam pro typ puzzle.</dd>
@@ -247,6 +269,155 @@ wherigo-gen obrazek scénář.yaml</pre></div>
     <dt>20. 10. 2026</dt><dd>První verze: generátor únikové hry UNLOCK.</dd>
   </dl>
 </section>
+
+<!-- moje-cartridge:start -->
+<section id="moje-cartridge">
+  <span class="label">Autor</span>
+  <h2>Všechny moje cartridge na wherigo.com</h2>
+  <p>33 veřejných cartridge, dohromady 29 564 stažení. Údaje z wherigo.com k 22. října 2026.</p>
+  <div class="sort" role="group" aria-label="Řazení">
+    <button type="button" data-sort="created" aria-pressed="true">Nejnovější</button>
+    <button type="button" data-sort="dl" aria-pressed="false">Nejvíc stažení</button>
+  </div>
+  <ul class="wall">
+    <li class="wc" data-created="2025-06-04" data-dl="219"><img class="poster" src="obrazky/wherigo/87a1664a-92f8-4f2e-81a2-dab5006e9a01.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=87a1664a-92f8-4f2e-81a2-dab5006e9a01" target="_blank" rel="noopener">Miny</a></h3><p class="facts"><span class="tag">hlavolam</span><span>vytvořeno 4. 6. 2025</span><span>219&nbsp;stažení</span></p><p class="about">Cartridge na motivy zname pocitacove hry Hledani min/Minesweeper.
+Hru lze odehrat kdekoli.
+Pokud se Vam zadari, muzete ve hre ziskat souradnice ke kesi GCB8BEJ.</p></div></li>
+    <li class="wc" data-created="2020-11-15" data-dl="469"><img class="poster" src="obrazky/wherigo/9b70b491-8496-4acd-b64d-45c74298eca7.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=9b70b491-8496-4acd-b64d-45c74298eca7" target="_blank" rel="noopener">Unlock V</a></h3><p class="facts"><span class="tag">hlavolam</span><span>vytvořeno 15. 11. 2020</span><span>469&nbsp;stažení</span></p><p class="about">Vitejte v UNLOCK!
+Hra ma podtitul &#x27;Formule&#x27;.
+Hru lze odehrat kdekoli.
+Pokud se Vam zadari, muzete ve hre ziskat souradnice ke kesi GC92P61.</p></div></li>
+    <li class="wc" data-created="2019-08-01" data-dl="487"><img class="poster" src="obrazky/wherigo/bff0b3a3-cbfe-40b5-adb1-84345fcbbc2d.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=bff0b3a3-cbfe-40b5-adb1-84345fcbbc2d" target="_blank" rel="noopener">Unlock IV</a></h3><p class="facts"><span class="tag">hlavolam</span><span>vytvořeno 1. 8. 2019</span><span>487&nbsp;stažení</span></p><p class="about">Vitejte v UNLOCK!
+Hra ma podtitul &#x27;Honba za Cabrakanem&#x27;.
+Hru lze odehrat kdekoli.
+Pokud se Vam zadari, muzete ve hre ziskat souradnice ke kesi GC8XBY8.</p></div></li>
+    <li class="wc" data-created="2019-05-22" data-dl="547"><img class="poster" src="obrazky/wherigo/e9cf4195-413c-412e-abad-848dc423c909.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=e9cf4195-413c-412e-abad-848dc423c909" target="_blank" rel="noopener">Unlock III</a></h3><p class="facts"><span class="tag">hlavolam</span><span>vytvořeno 22. 5. 2019</span><span>547&nbsp;stažení</span></p><p class="about">Vitejte v UNLOCK!
+Hra ma podtitul &#x27;Pata Avenue&#x27;.
+Hru lze odehrat kdekoli.
+Pokud se Vam zadari, muzete ve hre ziskat souradnice ke kesi GC88AP0.</p></div></li>
+    <li class="wc" data-created="2019-05-13" data-dl="635"><img class="poster" src="obrazky/wherigo/8dda98db-54fa-45c5-94b9-14b7796d8b39.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=8dda98db-54fa-45c5-94b9-14b7796d8b39" target="_blank" rel="noopener">Unlock II</a></h3><p class="facts"><span class="tag">hlavolam</span><span>vytvořeno 13. 5. 2019</span><span>635&nbsp;stažení</span></p><p class="about">Vitejte v UNLOCK!
+Hra ma podtitul &#x27;Pripad falesneho hrace&#x27;.
+Hru lze odehrat kdekoli.
+Pokud se Vam zadari, muzete ve hre ziskat souradnice ke kesi GC87V8M.</p></div></li>
+    <li class="wc" data-created="2019-04-18" data-dl="896"><img class="poster" src="obrazky/wherigo/34b33f41-938f-42f3-be99-c111a402834b.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=34b33f41-938f-42f3-be99-c111a402834b" target="_blank" rel="noopener">Unlock I</a></h3><p class="facts"><span class="tag">hlavolam</span><span>vytvořeno 18. 4. 2019</span><span>896&nbsp;stažení</span></p><p class="about">Vitejte v UNLOCK!
+V teto hre zazijete podobne pocity, jako v unikove hre. Budete celit rebusum, lustit kody, sestavovat objekty a objevovat zaludnosti.
+Hra ma podtitul &#x27;Prijimaci pohovor&#x27;.
+Hru lze odehrat kdekoli.
+Pokud se Vam zadari, muzete ve hre ziskat souradnice ke kesi GC86TAV.</p></div></li>
+    <li class="wc" data-created="2018-11-06" data-dl="467"><img class="poster" src="obrazky/wherigo/578aeae1-7b52-4605-96e5-71b188d46e24.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=578aeae1-7b52-4605-96e5-71b188d46e24" target="_blank" rel="noopener">Podraz 3</a></h3><p class="facts"><span class="tag">příběh</span><span>vytvořeno 6. 11. 2018</span><span>467&nbsp;stažení</span></p><p class="about">KONCEM 80. LET 20. STOLETI SE ROZMAHA NOVA ODRUDA ZLOCINNOSTI - KRADEZE POMOCI POCITACU. LUPICI UZ NEPOTREBUJI NAKLADNE VYBAVENI, STACI JIM MIKROPOCITAC A MODEM (ZARIZENI K PROPOJENI DVOU POCITACU TELEFONEM). JEDINE VYDAJE TECHTO LUPICU JSOU POPLATKY ZA TELEFON.
+
+NAS PRIBEH SE ODEHRAVA V NEW YORKU ROKU 1989. VZIJTE SE DO ROLE NEZAMESTNANEHO PROGRAMATORA TIMA COLEMANA, VYBAVENEHO POCITACEM TIMEX 2097 A MODEMEM RS-2363 A POKUSTE SE SPOLU SE SVYMI PRATELI OLOUPIT LUPICE...
+
+HRU LZE ODEHRAT KDEKOLI.
+POKUD SE VAM ZADARI, MUZETE VE HRE ZISKAT SOURADNICE KE KESI GC800P5.</p></div></li>
+    <li class="wc" data-created="2018-11-05" data-dl="1395"><img class="poster" src="obrazky/wherigo/2d148615-99b1-4b2b-bcf1-0f0f5e9ec410.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=2d148615-99b1-4b2b-bcf1-0f0f5e9ec410" target="_blank" rel="noopener">Proklety dum</a></h3><p class="facts"><span class="tag">hlavolam</span><span>vytvořeno 5. 11. 2018</span><span>1 395&nbsp;stažení</span></p><p class="about">PROBUDIL SES V NEZNAMEM DOME. V DIVNEM DOME. V PROKLETEM DOME. TOLIK POKOJU A TOLIK DVERI! JISTE VIS JEN JEDNO: MUSIS HNED PRYC!
+PROKLETY DUM MA PET VYCHODU. ZA KAZDY NALEZENY VYCHOD DOSTANES SOURADNICE JEDNE KESE. KDYZ SE TI PODARI NAJIT VSECHNY VYCHODY, ZISKAS INDICIE K OTEVRENI TRUHLY, KDE NAJDES SOURADNICE BONUSOVE KESE.
+HRU LZE HRAT KDEKOLI, DOKONCE ANI NEPOTREBUJES ZAPINAT GPS.
+VELKY DIK PATRI KACEROVI KIKONAN, KTERY HRU VYTVORIL.</p></div></li>
+    <li class="wc" data-created="2018-01-03" data-dl="325"><img class="poster" src="obrazky/wherigo/99e5c858-c3e7-4e47-8e72-61c00d27ad71.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=99e5c858-c3e7-4e47-8e72-61c00d27ad71" target="_blank" rel="noopener">Kuratko kadanske</a></h3><p class="facts"><span class="tag">hlavolam</span><span>vytvořeno 3. 1. 2018</span><span>325&nbsp;stažení</span></p><p class="about">Co se stalo pohadko?
+Zabloudilo kuratko!
+Za zahradou mezi poli
+pipa, pipa, nozky boli...
+Ve vysokem obili
+bude vecer za chvili.</p></div></li>
+    <li class="wc" data-created="2017-09-28" data-dl="417"><img class="poster" src="obrazky/wherigo/25f98297-91b4-4ca3-852f-e1c575ae2df5.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=25f98297-91b4-4ca3-852f-e1c575ae2df5" target="_blank" rel="noopener">Vodni stezka</a></h3><p class="facts"><span class="tag">prohlídka</span><span>vytvořeno 28. 9. 2017</span><span>417&nbsp;stažení</span></p><p class="about">Nenarocna prochazka po zastavenich Vodni naucne stezky v Novem Veseli.</p></div></li>
+    <li class="wc" data-created="2017-09-21" data-dl="526"><img class="poster" src="obrazky/wherigo/9a59064f-214c-4e18-8f92-b110bf15c136.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=9a59064f-214c-4e18-8f92-b110bf15c136" target="_blank" rel="noopener">Hadi a zebriky</a></h3><p class="facts"><span class="tag">hlavolam</span><span>vytvořeno 21. 9. 2017</span><span>526&nbsp;stažení</span></p><p class="about">Wherigo verze klasicke deskove hry. Hazis kostkou a snazis se dostat na policko 100. Zebriky pomahaji, hadi skodi.
+Hru lze hrat kdekoli, hraci plocha je minimalne 100 x 100 m.</p></div></li>
+    <li class="wc" data-created="2017-06-09" data-dl="498"><img class="poster" src="obrazky/wherigo/7f21daac-7de5-43bb-9e8e-2ac777f65bcc.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=7f21daac-7de5-43bb-9e8e-2ac777f65bcc" target="_blank" rel="noopener">Matrix</a></h3><p class="facts"><span class="tag">hlavolam</span><span>vytvořeno 9. 6. 2017</span><span>498&nbsp;stažení</span></p><p class="about">V roli agenta jsi Matrixem vyslan, aby jsi vypatral a zabil vudce odporu lidstva proti strojum. Jeho jmeno je Thomas A. Anderson, obecne je ale znamy pod prezdivkou &#x27;Neo&#x27;.
+Do a z Matrixu se tento nebezpecny terorista dostava pomoci unikovych vychodu, ktere ve svete Matrixu vypadaji jako telefonni budky.
+Znicit ho muzes jedine zablokovanim techto vychodu a spustenim vyhledavaciho softwaru.</p></div></li>
+    <li class="wc" data-created="2017-04-05" data-dl="694"><img class="poster" src="obrazky/wherigo/d0776f04-5a4a-49b5-8cd1-f9f14e7c805a.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=d0776f04-5a4a-49b5-8cd1-f9f14e7c805a" target="_blank" rel="noopener">Lenochod II</a></h3><p class="facts"><span class="tag">hlavolam</span><span>vytvořeno 5. 4. 2017</span><span>694&nbsp;stažení</span></p><p class="about">Lenochod ma line nozky,
+rad si sedne do lenosky.
+Co tam dela? Lenosi!
+Vrni pritom rozkosi.</p></div></li>
+    <li class="wc" data-created="2015-08-02" data-dl="940"><img class="poster" src="obrazky/wherigo/c46b09ae-7f9e-4ef9-9dc6-b07e8556a17d.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=c46b09ae-7f9e-4ef9-9dc6-b07e8556a17d" target="_blank" rel="noopener">Jihlavska pevnost</a></h3><p class="facts"><span class="tag">prohlídka</span><span>vytvořeno 2. 8. 2015</span><span>940&nbsp;stažení</span></p><p class="about">Tato wherigo hra Te provede trasou naucne stezky Jihlavska pevnost. Stezku pripravilo mesto Jihlava. Otevrena byla v prosinci 2013. Tvori ji 9 zastaveni, na kterych jsou umisteny informacni panely.
+Na www.geocaching.com je cache vedena jako GC5B862.</p></div></li>
+    <li class="wc" data-created="2015-07-06" data-dl="716"><img class="poster" src="obrazky/wherigo/937d6529-3ee3-47e1-86e7-5bf2e4857788.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=937d6529-3ee3-47e1-86e7-5bf2e4857788" target="_blank" rel="noopener">Mars opet utoci!</a></h3><p class="facts"><span class="tag">hlavolam</span><span>vytvořeno 6. 7. 2015</span><span>716&nbsp;stažení</span></p><p class="about">Martani! Vasim ukolem je snest se z nebes na nebohe obyvatele primitivni planety Zeme a nasbirat tolik vzorku, kolik jen zvladnete. Mame zajem o vzorky kurat, krav a lidi. Pozemstanum by se mohlo podarit dat dohromady slabou obranu, ale jiste to nebude nic, co by nezvladla mala ochutnavka z nasich paprsku smrti. Snazte se, at muzeme byt hrdi na svou domovskou planetu! Mars utoci!</p></div></li>
+    <li class="wc" data-created="2015-06-24" data-dl="637"><img class="poster" src="obrazky/wherigo/5449e18f-3134-4d40-b5a0-a63d33b13484.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=5449e18f-3134-4d40-b5a0-a63d33b13484" target="_blank" rel="noopener">Podivuhodna setkani</a></h3><p class="facts"><span class="tag">prohlídka</span><span>vytvořeno 24. 6. 2015</span><span>637&nbsp;stažení</span></p><p class="about">Tato wherigo cache Vas provede trasou naucne stezky, ktera je venovana Eleonore Sternbachove, dceri barona Leopolda Sternbacha. Na patnacti zastavenich vas seznami s osobnostmi, ktere v Tresti zily, tvorily a zanechaly zde svou stopu. Stezka byla slavnostne otevrena v dubnu 2015.
+
+Soucasti naucne stezky je tzv. &quot;Hledacka s tajenkou&quot;. Obsahuje 15 otazek k jednotlivym zastavenim naucne stezky. Jejich zodpovezenim a doplnenim vybranych policek můzete vylustit velkou tajenku. Hledacku si můzete vyzvednou na recepci Zameckeho hotelu.
+
+Cartridge k teto cachi Vam bude pokladat stejne otazky, jake jsou obsazeny v &quot;hledacce&quot;. Pro nalezeni cache nemusite na otazky odpovidat, staci obejit jednotliva zastaveni. Ale ochudite se tak nejen o vyslednou tajenku, ale nezobrazi se Vam ani fotohint, ktery muze pomoct pri nalezeni finalni krabicky. K zobrazeni tajenky a hintu je treba spravne odpovedet alespon na 14 otazek.
+
+Hra je vhodna i pro zacinajici wherigo hrace.
+
+Celkova delka trasy je</p></div></li>
+    <li class="wc" data-created="2015-04-14" data-dl="572"><img class="poster" src="obrazky/wherigo/b3958db3-f12d-46a7-b03c-52759f5d5204.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=b3958db3-f12d-46a7-b03c-52759f5d5204" target="_blank" rel="noopener">ROB Cerinek</a></h3><p class="facts"><span class="tag">hlavolam</span><span>vytvořeno 14. 4. 2015</span><span>572&nbsp;stažení</span></p><p class="about">Pomoci predmetu Prijimac muzes naladit vysilani skrytych vysilacu. Tech je celkem 5 a vysilaji z mist, kde jsou ukryty cache MOE, MOI, MOS, MOH a MO5.
+
+Pro zjednoduseni probiha ladeni vsech vysilacu zaroven a vysledkem je u kazdeho vysilace hodnota intenzity signalu v intervalu 0 az 100. Se zvysujici se vzdalenosti od vysilace intenzita klesa. Tvym ukolem je najit vsechny vysilace, tj. vsechna mista s intenzitou signalu 100.
+
+Po nalezeni kazdeho vysilace je tento automaticky zaznacen jako nalezeny a za odmenu je odvysilano kodove oznaceni vysilace v morseovce.
+
+Po nalezeni vsech peti ukrytych vysilacu zacne vysilat &quot;liska&quot; (vysilac/cache s oznacenim MO).
+
+Pocet ladeni, nachozenou vzdalenost a cisla nalezenych vysilacu lze v libovolnem okamziku hry nalezt v Zapisniku.
+
+Hru muzes pustit kdekoliv, ale pouze nekde v oblasti Cerinku kolem uvodnich souradnic nameris nenulove hodnoty intenzity signalu.</p></div></li>
+    <li class="wc" data-created="2015-04-09" data-dl="662"><img class="poster" src="obrazky/wherigo/9ccb3c39-e988-4f0f-abb5-91ad761e6d1e.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=9ccb3c39-e988-4f0f-abb5-91ad761e6d1e" target="_blank" rel="noopener">Kuratko prazske</a></h3><p class="facts"><span class="tag">hlavolam</span><span>vytvořeno 9. 4. 2015</span><span>662&nbsp;stažení</span></p><p class="about">Co se stalo pohadko?
+Zabloudilo kuratko!
+Za zahradou mezi poli
+pipa, pipa, nozky boli...
+Ve vysokem obili
+bude vecer za chvili.</p></div></li>
+    <li class="wc" data-created="2014-11-12" data-dl="793"><img class="poster" src="obrazky/wherigo/ee60aa8c-5624-422a-a5ff-091e51707e73.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=ee60aa8c-5624-422a-a5ff-091e51707e73" target="_blank" rel="noopener">Klokan</a></h3><p class="facts"><span class="tag">hlavolam</span><span>vytvořeno 12. 11. 2014</span><span>793&nbsp;stažení</span></p><p class="about">Videli jsme klokana,
+boxovati nohama.
+Kazdy kacer se ho bal,
+drz se od nej taky dal.</p></div></li>
+    <li class="wc" data-created="2014-08-16" data-dl="541"><img class="poster" src="obrazky/wherigo/aaf4ef8c-ab0f-42a5-8a99-6e6c8efcacbb.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=aaf4ef8c-ab0f-42a5-8a99-6e6c8efcacbb" target="_blank" rel="noopener">Gehiiiiiiiiiiiiiiiiiirne!!!</a></h3><p class="facts"><span class="tag">hlavolam</span><span>vytvořeno 16. 8. 2014</span><span>541&nbsp;stažení</span></p><p class="about">Wherigo benutzt Motiv des Spiels Zombie dice.
+Du wirst zum Zombie. Du bemuhst sich, moglichst viele Gehirne zu konsumieren, bevor dich drei gezielte Schusse aus der Schrotflinte toten.</p></div></li>
+    <li class="wc" data-created="2014-05-25" data-dl="393"><img class="poster" src="obrazky/wherigo/7052febc-52fd-4310-bd6b-3a1543748285.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=7052febc-52fd-4310-bd6b-3a1543748285" target="_blank" rel="noopener">Jalavovec horem padem</a></h3><p class="facts"><span class="tag">hlavolam</span><span>vytvořeno 25. 5. 2014</span><span>393&nbsp;stažení</span></p><p class="about">V teto wherigo hre je vasim ukolem zdolat v casovem limitu sjezdovku na Jalovci, smerem nahoru. Na startu pod sjezdovkou je mozne volit mezi pomalou a rychlou variantou.</p></div></li>
+    <li class="wc" data-created="2014-05-25" data-dl="379"><img class="poster" src="obrazky/wherigo/bffabae2-dd30-4bc5-81b4-8f0e98dac685.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=bffabae2-dd30-4bc5-81b4-8f0e98dac685" target="_blank" rel="noopener">Jalavovec dolem padem</a></h3><p class="facts"><span class="tag">hlavolam</span><span>vytvořeno 25. 5. 2014</span><span>379&nbsp;stažení</span></p><p class="about">V teto wherigo hre je vasim ukolem zdolat v casovem limitu sjezdovku na Jalovci, smerem dolu. Na startu nad sjezdovkou je mozne volit mezi pomalou a rychlou variantou.</p></div></li>
+    <li class="wc" data-created="2014-05-10" data-dl="1114"><img class="poster" src="obrazky/wherigo/b8a96f26-36d6-4344-a2bd-2266f7b1a430.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=b8a96f26-36d6-4344-a2bd-2266f7b1a430" target="_blank" rel="noopener">Kuratko</a></h3><p class="facts"><span class="tag">hlavolam</span><span>vytvořeno 10. 5. 2014</span><span>1 114&nbsp;stažení</span></p><p class="about">Co se stalo pohadko?
+Zabloudilo kuratko!
+Za zahradou mezi poli
+pipa, pipa, nozky boli...
+Ve vysokem obili
+bude vecer za chvili.</p></div></li>
+    <li class="wc" data-created="2014-04-08" data-dl="2251"><img class="poster" src="obrazky/wherigo/806a42b4-154e-494d-a332-3029d766b53e.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=806a42b4-154e-494d-a332-3029d766b53e" target="_blank" rel="noopener">Mars utoci!</a></h3><p class="facts"><span class="tag">hlavolam</span><span>vytvořeno 8. 4. 2014</span><span>2 251&nbsp;stažení</span></p><p class="about">Marťani! Vašim úkolem je snést se z nebes na nebohé obyvatele primitivní planety Země a nasbírat tolik vzorků, kolik jen zvládnete. Máme zájem o vzorky kuřat, krav a lidí. Pozemšťanům by se mohlo podařit dát dohromady slabou obranu, ale jistě to nebude nic, co by nezvládla malá ochutnávka z našich paprsků smrti. Snažte se, ať můžeme být hrdí na svou domovskou planetu! Mars útočí!</p></div></li>
+    <li class="wc" data-created="2013-12-29" data-dl="939"><img class="poster" src="obrazky/wherigo/4d68b1a6-7256-4e60-9ceb-bc17fb2dc8c9.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=4d68b1a6-7256-4e60-9ceb-bc17fb2dc8c9" target="_blank" rel="noopener">Braaaiiiiiiiiiiiiiiiiiinss!!!</a></h3><p class="facts"><span class="tag">hlavolam</span><span>vytvořeno 29. 12. 2013</span><span>939&nbsp;stažení</span></p><p class="about">Stavas se zombie, ktera se snazi zkonzumovat co nejvice mozku, nez ji skoli tri ci vice dobre mirenych zasahu brokovnici.</p></div></li>
+    <li class="wc" data-created="2013-10-23" data-dl="1060"><img class="poster" src="obrazky/wherigo/af295a1c-d04e-4bf1-b0f7-2f379a25fcc8.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=af295a1c-d04e-4bf1-b0f7-2f379a25fcc8" target="_blank" rel="noopener">Stara plovarna</a></h3><p class="facts"><span class="tag">prohlídka</span><span>vytvořeno 23. 10. 2013</span><span>1 060&nbsp;stažení</span></p><p class="about">Naucna stezka se nachazi v JV casti uzemi mesta Jihlavy. Byla vybudovana v roce 2013 s cilem seznamit navstevniky s historii, vegetaci a zvirenou teto krasne lokality a upozornit na cenne soucasti prirody, ktere se nachazi sotva 15 minut chuze od centra mesta.</p></div></li>
+    <li class="wc" data-created="2013-10-18" data-dl="1123"><img class="poster" src="obrazky/wherigo/a0b9b95a-cfc8-43b1-931c-93a0faba75f8.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=a0b9b95a-cfc8-43b1-931c-93a0faba75f8" target="_blank" rel="noopener">Piwigo</a></h3><p class="facts"><span class="tag">prohlídka</span><span>vytvořeno 18. 10. 2013</span><span>1 123&nbsp;stažení</span></p><p class="about">Tato wherigo cache Te provede trasou pivovarske naucne stezky v Jihlave. Stezku pripravilo mesto Jihlava ve spolupraci s Muzeem Vysociny a jihlavskym pivovarem. Otevrena byla v prosinci 2013. Tvori ji 12 zastaveni, na kterych jsou umisteny informacni panely.</p></div></li>
+    <li class="wc" data-created="2013-10-15" data-dl="4850"><img class="poster" src="obrazky/wherigo/e5093860-92a2-4f44-b790-de1ff88fcf7f.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=e5093860-92a2-4f44-b790-de1ff88fcf7f" target="_blank" rel="noopener">Secret of the Ocean</a></h3><p class="facts"><span class="tag">hlavolam</span><span>vytvořeno 15. 10. 2013</span><span>4 850&nbsp;stažení</span></p><p class="about">Cartridge inspired by Soviet vintage digital game.
+
+After finishing the game, you can find one of these geocaches:
+GC5AJEC - Secret of the Ocean (UK)
+GC4Q7GK - Secret of the Ocean (HUN)
+GC542WM - Secret of the Ocean (QC)
+GC631EZ - Secret of the Ocean (SLO)
+GC73DJK - Secret of the Ocean (ROM)
+GC7CRGF - “MK #4 - Magdeburg&#x27;s Secret of the Ocean ”
+GC7K7D2 - Secret of the Ocean (PL)
+GC8117A - Secret of the Ocean (NL)
+GC8BG8H - Secret of the Ocean (NB)
+GC9G9VZ - Secret of the Ocean (BE)
+GC9HYCF - Secret of the Ocean (GER)
+GCAXXC8 - Secret of the Ocean (SVK)
+OC1875A - Secret of the Ocean (CH)
+GCBB4XN - Secret of the ocean (AT)</p></div></li>
+    <li class="wc" data-created="2013-09-30" data-dl="844"><img class="poster" src="obrazky/wherigo/455e8d71-0d70-4771-9983-d445a86afc3b.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=455e8d71-0d70-4771-9983-d445a86afc3b" target="_blank" rel="noopener">Pomsta staryho Charona</a></h3><p class="facts"><span class="tag">hlavolam</span><span>vytvořeno 30. 9. 2013</span><span>844&nbsp;stažení</span></p><p class="about">V prvnim kroku si na uvodnich souradnicich v praxi vyzkousite notoricky znamou ulohu &quot;Vlk-Koza-Zeli&quot;. V druhem kroku si na lavce u lodenice projdete mene znamou ulohu &quot;Prekroc reku&quot;.</p></div></li>
+    <li class="wc" data-created="2013-04-25" data-dl="990"><img class="poster" src="obrazky/wherigo/5b35dc0a-c65f-4be4-a485-743c84f5aa9f.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=5b35dc0a-c65f-4be4-a485-743c84f5aa9f" target="_blank" rel="noopener">30 stribrnych</a></h3><p class="facts"><span class="tag">hlavolam</span><span>vytvořeno 25. 4. 2013</span><span>990&nbsp;stažení</span></p><p class="about">Navstevuj patniky, hledej stribrnaky. Az jich bude 30, otevre se Ti zona s cachi.</p></div></li>
+    <li class="wc" data-created="2013-03-17" data-dl="1022"><img class="poster" src="obrazky/wherigo/e561e853-6718-4dee-b2e3-4d5f663a0492.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=e561e853-6718-4dee-b2e3-4d5f663a0492" target="_blank" rel="noopener">Tajemstvi oceanu</a></h3><p class="facts"><span class="tag">hlavolam</span><span>vytvořeno 17. 3. 2013</span><span>1 022&nbsp;stažení</span></p><p class="about">Na lov pokladu mate vzdy pouze 60 sekund, v tomto limitu se musite vratit zpet do lodky, jinak ztratite zivot. Za kazdou sekundu stravenou u pokladu ziskavate po navratu do lodky 1 bod. Pocet ponoru k pokladu neni omezen. Hru uspesne dokoncite, pokud ziskate 500 bodu. Hra konci neuspechem, pokud ztratite vsechny 3 zivoty.</p></div></li>
+    <li class="wc" data-created="2013-03-09" data-dl="627"><img class="poster" src="obrazky/wherigo/f99fa24b-37bf-4289-a13a-7dd79c3f39e8.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=f99fa24b-37bf-4289-a13a-7dd79c3f39e8" target="_blank" rel="noopener">Ecce Homo Cerincus</a></h3><p class="facts"><span class="tag">hlavolam</span><span>vytvořeno 9. 3. 2013</span><span>627&nbsp;stažení</span></p><p class="about">Ukolem je v danem casovem limitu zdolat sjezdovku na Cerinku. Na startu pod sjezdovkou je mozne volit mezi pomalou a rychlou variantou.</p></div></li>
+    <li class="wc" data-created="2013-01-03" data-dl="1536"><img class="poster" src="obrazky/wherigo/09b0fb5e-ee10-4907-b264-f9d67434545d.jpg" width="96" height="120" alt="" loading="lazy"><div class="meta"><h3><a href="https://www.wherigo.com/cartridge/details.aspx?CGUID=09b0fb5e-ee10-4907-b264-f9d67434545d" target="_blank" rel="noopener">Okolo Zelene hory</a></h3><p class="facts"><span class="tag">prohlídka</span><span>vytvořeno 3. 1. 2013</span><span>1 536&nbsp;stažení</span></p><p class="about">Celkova delka tras je 4,7 km a pohodovou chuzi je projdete za 2 hodiny. Stezka je rozdelena na dva vychazkove okruhy, z nichz prvni Vas zavede do okoli Branskeho rybnika a druhy do okoli rybnika Konvent.</p></div></li>
+  </ul>
+</section>
+<script>
+(() => {
+  const list = document.querySelector("#moje-cartridge .wall");
+  const buttons = document.querySelectorAll("#moje-cartridge .sort button");
+  buttons.forEach(b => b.addEventListener("click", () => {
+    const key = b.dataset.sort;
+    const val = li => key === "dl" ? +li.dataset.dl : li.dataset.created;
+    [...list.children].sort((a, z) => val(a) < val(z) ? 1 : val(a) > val(z) ? -1 : 0).forEach(li => list.append(li));
+    buttons.forEach(x => x.setAttribute("aria-pressed", x === b));
+  }));
+  list.addEventListener("click", e => {
+    const p = e.target.closest(".about");
+    if (p) p.classList.toggle("open");
+  });
+})();
+</script>
+<!-- moje-cartridge:end -->
 
 <footer>
   <span>WherigoGenerator · Varouch</span>
